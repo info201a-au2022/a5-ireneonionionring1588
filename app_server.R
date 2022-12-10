@@ -5,7 +5,7 @@ co2_data <- read.csv("https://raw.githubusercontent.com/owid/co2-data/master/owi
 average_val_of_coalco2 <- co2_data %>% filter(year == 2021) %>% summarise(coal_co2_average = mean(coal_co2, na.rm = TRUE))%>% pull(coal_co2_average)
 print(average_val_of_coalco2)
 
-#Where is my variable the highest / lowes
+#Where is my variable the highest / lowest?
 max_val_of_coalco2 <- co2_data %>% filter(coal_co2 == max(coal_co2, na.rm = TRUE)) %>% pull(country)
 print(max_val_of_coalco2)
 min_val_of_coalco2 <- co2_data %>% filter(coal_co2 == min(coal_co2, na.rm = TRUE)) %>% group_by(country) %>% summarise(coal_co2 = mean(coal_co2, na.rm = TRUE)) %>% pull(country) 

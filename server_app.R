@@ -8,34 +8,33 @@ server <- function(input, output) {
     gas_data <- co2_data %>% filter(country %in% input$countries) %>% group_by(country) %>% summarise(gas_co2_average = mean(gas_co2, na.rm = TRUE))
     
     if(input$co2_source ==  "coal"){
-      coal_co2_plot <- ggplot(co2_data, mapping = aes(x = coal_co2_average, y = country)) + 
+      print("coal")
+      co2_plot <- ggplot(coal_data, mapping = aes(x = coal_co2_average, y = country)) + 
         ggtitle("Countries and CO2 rates from coal") + 
         geom_col() +
         labs(caption = "This interactive chart shows various countries' co2 emmission rates from use of coal.") +
         theme(plot.caption.position = "plot",plot.caption = element_text(hjust = 0))
-    
-      coal_co2_plot
+   
     }
     
-    if(input$co2_source == "oil"){
-      oil_co2_plot <- ggplot(co2_data, mapping = aes(x = oil_co2_average, y = country)) + 
+    else if(input$co2_source == "oil"){
+      co2_plot <- ggplot(oil_data, mapping = aes(x = oil_co2_average, y = country)) + 
         ggtitle("Countries and CO2 rates from oil") + 
         geom_col() +
         labs(caption = "This interactive chart shows various countries' co2 emmission rates from use of oil.") +
         theme(plot.caption.position = "plot",plot.caption = element_text(hjust = 0))
-      
-      oil_co2_plot
+
     }
     
-    if(input$co2_source == "gas"){
-      gas_co2_plot <- ggplot(co2_data, mapping = aes(x = gas_co2_average, y = country)) + 
+    else if(input$co2_source == "gas"){
+      co2_plot <- ggplot(gas_data, mapping = aes(x = gas_co2_average, y = country)) + 
         ggtitle("Countries and CO2 rates from gas") + 
         geom_col() +
         labs(caption = "This interactive chart shows various countries' co2 emmission rates from use of gas.") +
         theme(plot.caption.position = "plot",plot.caption = element_text(hjust = 0))
-      
-      gas_co2_plot
+
     }
+    return(co2_plot)
     
   })
 } 
