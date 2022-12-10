@@ -18,7 +18,6 @@ intro_panel <- tabPanel(
   strong("2019: 217tons to 2020: 260tons to 2021: 274tons", style = "font-size: 18px"),
   p("Code on app_server.R", style = "font-size: 18px")
 
-  
 )
 
 plot_sidebar_content <- sidebarPanel(
